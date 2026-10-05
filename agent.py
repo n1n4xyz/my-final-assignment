@@ -298,7 +298,6 @@ def _expand_to_sections(
         keep.update(p.id for p in doc_paras[start:end])
     return [p for p in doc_paras if p.id in keep]
 
-source_documents = _best_documents(_core_question(question), documents, limit=2)
 
 
 # ---------------------------------------------------------------------------
