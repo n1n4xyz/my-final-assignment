@@ -284,7 +284,7 @@ def my_answer_question(
     documents: Sequence[Document],
     client: LLMClient,
     max_tool_calls: int = 3,
-    top_k: int = 3,
+    top_k: int = 5,
     timeout_s: float = 30.0,
 ) -> AgentResult:
     """Answer a question by selecting and copying source paragraphs verbatim."""
