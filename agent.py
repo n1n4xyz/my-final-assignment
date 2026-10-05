@@ -6,6 +6,7 @@ those paragraphs verbatim, so exact wording and citations are deterministic.
 
 from __future__ import annotations
 
+import threading
 import json
 import signal
 from dataclasses import dataclass
@@ -198,6 +199,10 @@ def _complete_with_timeout(
     # signal.SIGALRM is unavailable on Windows.
     if not hasattr(signal, "SIGALRM"):
         return client.complete(system=system, user=user)
+
+    if threading.current_thread() is not threading.main_thread():
+        return client.complete(system=system, user=user)
+
 
     previous_handler = signal.getsignal(signal.SIGALRM)
 
